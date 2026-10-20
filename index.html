@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090d">
+
+  <title>Orcaweb — Sites premium para empresas locais</title>
+
+  <meta
+    name="description"
+    content="A Orcaweb cria sites modernos, rápidos e personalizados para empresas locais e prestadores de serviços."
+  >
+
+  <meta property="og:title" content="Orcaweb — Sites premium para negócios locais">
+  <meta
+    property="og:description"
+    content="Sites modernos, rápidos e personalizados para sua empresa."
+  >
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #07090d;
+      --bg-secondary: #0d1118;
+      --card: rgba(20, 27, 38, .78);
+      --border: rgba(255,255,255,.12);
+      --text: #f6f8fc;
+      --muted: #9da9b9;
+      --blue: #69a9ff;
+      --cyan: #62e6df;
+      --purple: #a98aff;
+      --green: #39d98a;
+      --radius: 22px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(87, 137, 255, .15), transparent 28rem),
+        radial-gradient(circle at 0% 40%, rgba(151, 104, 255, .08), transparent 25rem),
+        var(--bg);
+      font-family: "Manrope", sans-serif;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .25;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 45px 45px;
+      mask-image: linear-gradient(to bottom, #000, transparent 90%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(calc(100% - 34px), var(--max-width));
+      margin: auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 17px;
+      color: var(--cyan);
+      font-family: "DM Mono", monospace;
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 16px var(--cyan);
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+
+    h1 {
+      max-width: 700px;
+      font-size: clamp(2.65rem, 12vw, 6rem);
+    }
+
+    h2 {
+      font-size: clamp(2.1rem, 9vw, 4.3rem);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .gradient {
+      color: transparent;
+      background: linear-gradient(115deg, #fff, var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .button {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      color: #06080d;
+      background: linear-gradient(120deg, #75b6ff, #8d7cff);
+      box-shadow: 0 12px 35px rgba(90, 139, 255, .22);
+      font-size: .88rem;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+      box-shadow: 0 18px 42px rgba(90, 139, 255, .4);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255,255,255,.045);
+      box-shadow: none;
+    }
+
+    .header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      padding: 14px 0;
+      border-bottom: 1px solid transparent;
+      transition: .3s ease;
+    }
+
+    .header.scrolled {
+      border-color: var(--border);
+      background: rgba(7, 9, 13, .8);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(105,169,255,.5);
+      border-radius: 11px;
+      color: var(--cyan);
+      background: linear-gradient(145deg, rgba(105,169,255,.25), rgba(169,138,255,.2));
+      font-family: "DM Mono", monospace;
+      font-size: .8rem;
+    }
+
+    .desktop-menu {
+      display: none;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .desktop-menu a:hover {
+      color: var(--text);
+    }
+
+    .menu-button {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      background: rgba(255,255,255,.05);
+      cursor: pointer;
+    }
+
+    .menu-button::before {
+      content: "☰";
+      font-size: 1.2rem;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 75px;
+      left: 17px;
+      right: 17px;
+      z-index: 40;
+      display: grid;
+      gap: 4px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(15, 21, 30, .95);
+      box-shadow: 0 25px 70px rgba(0,0,0,.45);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-12px);
+      transition: .25s ease;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      padding: 14px;
+      border-radius: 10px;
+      color: var(--muted);
+    }
+
+    .mobile-menu a:hover {
+      color: white;
+      background: rgba(255,255,255,.06);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 125px 0 70px;
+    }
+
+    .hero p {
+      max-width: 580px;
+      margin: 22px 0 27px;
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 25px;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .hero-status span::before {
+      content: "✓";
+      margin-right: 6px;
+      color: var(--green);
+    }
+
+    .hero-visual {
+      min-height: 310px;
+      display: grid;
+      place-items: center;
+      margin-top: 50px;
+    }
+
+    .orbit {
+      width: min(78vw, 315px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      position: relative;
+      border: 1px solid rgba(105,169,255,.35);
+      border-radius: 50%;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(169,138,255,.3);
+      border-radius: 50%;
+    }
+
+    .orbit::before {
+      inset: 24px -23px;
+      transform: rotate(55deg);
+    }
+
+    .orbit::after {
+      inset: -23px 24px;
+      transform: rotate(-55deg);
+    }
+
+    .core {
+      width: 45%;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(150,200,255,.65);
+      border-radius: 28%;
+      background: linear-gradient(145deg, rgba(92,160,255,.35), rgba(124,93,220,.25));
+      box-shadow: 0 0 80px rgba(92,144,255,.3);
+      transform: rotate(45deg);
+    }
+
+    .core span {
+      color: white;
+      font-family: "DM Mono", monospace;
+      font-size: 1.8rem;
+      text-shadow: 0 0 20px var(--cyan);
+      transform: rotate(-45deg);
+    }
+
+    .floating-label {
+      position: absolute;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--muted);
+      background: rgba(12,17,25,.85);
+      font-family: "DM Mono", monospace;
+      font-size: .6rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .label-one {
+      top: 8%;
+      left: -2%;
+    }
+
+    .label-two {
+      right: -4%;
+      bottom: 17%;
+    }
+
+    .label-three {
+      bottom: 1%;
+      left: 13%;
+    }
+
+    .glass-card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+      box-shadow: 0 18px 55px rgba(0,0,0,.18);
+      transition: .3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(105,169,255,.45);
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(105,169,255,.3);
+      border-radius: 13px;
+      color: var(--cyan);
+      background: rgba(81,149,255,.1);
+      font-size: 1.15rem;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading p {
+      margin-top: 17px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .about-card h3,
+    .service-card h3 {
+      margin: 20px 0 9px;
+    }
+
+    .service-card {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card .link {
+      margin-top: auto;
+      padding-top: 22px;
+      color: var(--cyan);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 13px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .benefit:last-child {
+      border-bottom: 0;
+    }
+
+    .benefit h3 {
+      margin-bottom: 3px;
+      font-size: .95rem;
+      letter-spacing: -.02em;
+    }
+
+    .benefit p {
+      font-size: .82rem;
+    }
+
+    .process-card {
+      position: relative;
+      padding-top: 53px;
+    }
+
+    .number {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      color: var(--blue);
+      font-family: "DM Mono", monospace;
+      font-size: .7rem;
+    }
+
+    .process-card p {
+      margin-top: 10px;
+      font-size: .84rem;
+    }
+
+    .project {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .project-preview {
+      height: 185px;
+      display: flex;
+      align-items: end;
+      padding: 19px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(169,138,255,.7), transparent 27%),
+        linear-gradient(145deg, rgba(74,142,255,.55), transparent 55%),
+        #151d2a;
+    }
+
+    .project-window {
+      width: 88%;
+      height: 103px;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 12px;
+      background: rgba(7,10,16,.7);
+      transform: perspective(400px) rotateX(12deg) rotateY(-7deg);
+    }
+
+    .project-window::before {
+      content: "";
+      display: block;
+      width: 42%;
+      height: 7px;
+      margin-bottom: 18px;
+      border-radius: 5px;
+      background: var(--cyan);
+      box-shadow: 0 17px 0 rgba(255,255,255,.14), 0 34px 0 rgba(255,255,255,.1);
+    }
+
+    .project-info {
+      padding: 21px;
+    }
+
+    .mono {
+      color: var(--cyan);
+      font-family: "DM Mono", monospace;
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .project-info h3 {
+      margin: 9px 0;
+    }
+
+    .project-info p {
+      font-size: .83rem;
+    }
+
+    .project-info .link {
+      display: inline-block;
+      margin-top: 17px;
+      color: var(--cyan);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .faq {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      cursor: pointer;
+      list-style: none;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq summary::after {
+      content: "+";
+      color: var(--cyan);
+      font-size: 1.3rem;
+      transition: .25s;
+    }
+
+    .faq[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq p {
+      padding: 0 30px 20px 0;
+      font-size: .83rem;
+    }
+
+    .cta {
+      padding: 40px 23px;
+      border: 1px solid rgba(105,169,255,.45);
+      border-radius: 27px;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(136,113,255,.34), transparent 34%),
+        linear-gradient(145deg, rgba(76,144,255,.17), rgba(255,255,255,.035));
+    }
+
+    .cta h2 {
+      max-width: 680px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      max-width: 570px;
+      margin-bottom: 25px;
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    footer {
+      padding: 50px 0 100px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .footer-description {
+      max-width: 300px;
+      margin-top: 14px;
+      font-size: .82rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 9px;
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .copyright {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: #6e7989;
+      font-size: .7rem;
+    }
+
+    .whatsapp {
+      width: 57px;
+      height: 57px;
+      display: grid;
+      place-items: center;
+      position: fixed;
+      right: 17px;
+      bottom: 18px;
+      z-index: 30;
+      border-radius: 50%;
+      color: #06140d;
+      background: #20cf7b;
+      box-shadow: 0 10px 35px rgba(30,203,120,.38);
+      font-size: 1.35rem;
+      transition: .25s ease;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.08);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: .75s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-13px);
+      }
+    }
+
+    @media (min-width: 700px) {
+      .container {
+        width: min(calc(100% - 64px), var(--max-width));
+      }
+
+      .hero-actions,
+      .contact-buttons {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .grid.two,
+      .grid.three,
+      .grid.four,
+      .grid.five {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.4fr 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .menu-button,
+      .mobile-menu {
+        display: none;
+      }
+
+      .desktop-menu {
+        display: flex;
+      }
+
+      .hero-layout {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .hero-visual {
+        margin-top: 0;
+      }
+
+      .grid.two {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid.three {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .grid.four {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .grid.five {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="container nav">
+      <a class="logo" href="#inicio" aria-label="Orcaweb início">
+        <span class="logo-mark">&lt;/&gt;</span>
+        <span>orca<span class="gradient">web</span></span>
+      </a>
+
+      <nav class="desktop-menu" aria-label="Menu principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#duvidas">Dúvidas</a>
+        <a class="button" href="#contato">Começar projeto</a>
+      </nav>
+
+      <button class="menu-button" id="menuButton" aria-label="Abrir menu"></button>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#sobre">Sobre a Orcaweb</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Como funciona</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#duvidas">Dúvidas</a>
+    <a class="button" href="#contato">Começar projeto</a>
+  </nav>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-layout">
+        <div class="reveal">
+          <span class="eyebrow">Web design · Desenvolvimento · Estratégia</span>
+
+          <h1>
+            Seu negócio merece uma
+            <span class="gradient">presença digital à altura.</span>
+          </h1>
+
+          <p>
+            A Orcaweb cria sites rápidos, modernos e personalizados para empresas
+            locais que querem transmitir mais confiança e conquistar novas oportunidades.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#contato">
+              Comece seu projeto ↗
+            </a>
+
+            <a class="button secondary" href="#projetos">
+              Ver projetos
+            </a>
+          </div>
+
+          <div class="hero-status">
+            <span>Design personalizado</span>
+            <span>Foco em celular</span>
+            <span>Atendimento direto</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="orbit">
+            <div class="core">
+              <span>OW</span>
+            </div>
+
+            <span class="floating-label label-one">SITES / 01</span>
+            <span class="floating-label label-two">FAST & RESPONSIVE</span>
+            <span class="floating-label label-three">DESIGN_SYSTEM</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Sobre a Orcaweb</span>
+
+          <h2>
+            Pequena no tamanho.
+            <span class="gradient">Grande no cuidado.</span>
+          </h2>
+
+          <p>
+            A Orcaweb nasceu para ajudar empresas locais a deixarem de depender
+            apenas das redes sociais e construírem um espaço próprio na internet.
+          </p>
+        </div>
+
+        <div class="grid three">
+          <article class="glass-card reveal">
+            <div class="icon">✦</div>
+            <h3>Design com intenção</h3>
+            <p>
+              Cada seção é planejada para explicar seu serviço, gerar confiança
+              e incentivar o próximo contato.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="icon">⌁</div>
+            <h3>Tecnologia acessível</h3>
+            <p>
+              Usamos ferramentas modernas sem transformar o projeto em algo
+              complicado de manter.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="icon">◎</div>
+            <h3>Atendimento próximo</h3>
+            <p>
+              Você fala diretamente com Erick, sem excesso de intermediários
+              e sem respostas automáticas confusas.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicos">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Soluções digitais</span>
+
+          <h2>Um site que trabalha pelo seu negócio.</h2>
+
+          <p>
+            Estruturas modernas para empresas locais, profissionais autônomos,
+            comércios e prestadores de serviços.
+          </p>
+        </div>
+
+        <div class="grid four">
+          <article class="glass-card service-card reveal">
+            <div class="icon">⌘</div>
+            <h3>Landing pages</h3>
+            <p>
+              Páginas objetivas para divulgar um serviço, produto ou campanha.
+            </p>
+            <a class="link" href="#contato">Conhecer solução →</a>
+          </article>
+
+          <article class="glass-card service-card reveal">
+            <div class="icon">▦</div>
+            <h3>Sites institucionais</h3>
+            <p>
+              Apresente sua empresa, serviços, diferenciais e formas de contato.
+            </p>
+            <a class="link" href="#contato">Conhecer solução →</a>
+          </article>
+
+          <article class="glass-card service-card reveal">
+            <div class="icon">◈</div>
+            <h3>Sites para serviços</h3>
+            <p>
+              Estruturas pensadas para empresas que precisam receber pedidos.
+            </p>
+            <a class="link" href="#contato">Conhecer solução →</a>
+          </article>
+
+          <article class="glass-card service-card reveal">
+            <div class="icon">↗</div>
+            <h3>Manutenção</h3>
+            <p>
+              Atualizações, melhorias visuais e novas funcionalidades para o site.
+            </p>
+            <a class="link" href="#contato">Conhecer solução →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Por que Orcaweb</span>
+          <h2>Mais do que uma página bonita.</h2>
+        </div>
+
+        <div class="glass-card reveal">
+          <div class="benefit">
+            <div class="icon">01</div>
+            <div>
+              <h3>Primeira impressão profissional</h3>
+              <p>Seu cliente entende rapidamente quem você é e como entrar em contato.</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="icon">02</div>
+            <div>
+              <h3>Experiência pensada para celular</h3>
+              <p>Botões acessíveis, textos legíveis e navegação confortável.</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="icon">03</div>
+            <div>
+              <h3>Estrutura preparada para SEO</h3>
+              <p>HTML semântico e organização pronta para mecanismos de busca.</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="icon">04</div>
+            <div>
+              <h3>Performance sem excessos</h3>
+              <p>Animações pontuais e leves, sem prejudicar a velocidade.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="processo">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Método Orcaweb</span>
+          <h2>Do primeiro contato ao site publicado.</h2>
+          <p>
+            Um processo simples, transparente e feito para você acompanhar cada etapa.
+          </p>
+        </div>
+
+        <div class="grid five">
+          <article class="glass-card process-card reveal">
+            <span class="number">01 / DESCOBERTA</span>
+            <h3>Entendemos seu negócio</h3>
+            <p>Conversamos sobre público, serviços e objetivos.</p>
+          </article>
+
+          <article class="glass-card process-card reveal">
+            <span class="number">02 / PLANEJAMENTO</span>
+            <h3>Organizamos a ideia</h3>
+            <p>Definimos estrutura, conteúdo e visual.</p>
+          </article>
+
+          <article class="glass-card process-card reveal">
+            <span class="number">03 / DESIGN</span>
+            <h3>Criamos a experiência</h3>
+            <p>Transformamos informações em uma interface clara.</p>
+          </article>
+
+          <article class="glass-card process-card reveal">
+            <span class="number">04 / DESENVOLVIMENTO</span>
+            <h3>Construímos o site</h3>
+            <p>Implementamos tudo com foco em mobile e performance.</p>
+          </article>
+
+          <article class="glass-card process-card reveal">
+            <span class="number">05 / EVOLUÇÃO</span>
+            <h3>Publicamos e melhoramos</h3>
+            <p>Colocamos no ar e planejamos os próximos passos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projetos">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Projetos demonstrativos</span>
+          <h2>Experiências feitas para causar impacto.</h2>
+          <p>
+            Estes são exemplos visuais. Substitua por trabalhos reais conforme
+            sua carteira de clientes crescer.
+          </p>
+        </div>
+
+        <div class="grid three">
+          <article class="glass-card project reveal">
+            <div class="project-preview">
+              <div class="project-window"></div>
+            </div>
+
+            <div class="project-info">
+              <span class="mono">01 · AR-CONDICIONADO</span>
+              <h3>Orça Ar-Condicionados</h3>
+              <p>
+                Landing page para instalação, higienização e manutenção.
+              </p>
+              <a class="link" href="#contato">Criar algo parecido →</a>
+            </div>
+          </article>
+
+          <article class="glass-card project reveal">
+            <div
+              class="project-preview"
+              style="background:
+              radial-gradient(circle at 80% 20%, rgba(98,230,223,.7), transparent 27%),
+              linear-gradient(145deg, rgba(169,138,255,.55), transparent 55%),
+              #151d2a;"
+            >
+              <div class="project-window"></div>
+            </div>
+
+            <div class="project-info">
+              <span class="mono">02 · PROFISSIONAIS</span>
+              <h3>Studio Vertex</h3>
+              <p>
+                Conceito de site para uma empresa moderna e profissional.
+              </p>
+              <a class="link" href="#contato">Criar algo parecido →</a>
+            </div>
+          </article>
+
+          <article class="glass-card project reveal">
+            <div
+              class="project-preview"
+              style="background:
+              radial-gradient(circle at 80% 20%, rgba(78,217,169,.7), transparent 27%),
+              linear-gradient(145deg, rgba(78,136,255,.55), transparent 55%),
+              #151d2a;"
+            >
+              <div class="project-window"></div>
+            </div>
+
+            <div class="project-info">
+              <span class="mono">03 · COMÉRCIO LOCAL</span>
+              <h3>Northline Concept</h3>
+              <p>
+                Estrutura demonstrativa para uma marca local premium.
+              </p>
+              <a class="link" href="#contato">Criar algo parecido →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="duvidas">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Perguntas frequentes</span>
+          <h2>Antes de começar, você pode perguntar.</h2>
+        </div>
+
+        <div class="glass-card reveal">
+          <details class="faq">
+            <summary>Que tipo de empresa a Orcaweb atende?</summary>
+            <p>
+              Inicialmente, empresas locais, profissionais autônomos, comércios
+              e prestadores de serviços.
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>O site funciona em celular?</summary>
+            <p>
+              Sim. O projeto é desenvolvido com prioridade para celulares,
+              mas também pode ser expandido para tablets e computadores.
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>O domínio e a hospedagem estão incluídos?</summary>
+            <p>
+              Isso depende da proposta. A Orcaweb pode orientar você sobre
+              domínio e hospedagem.
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>Posso solicitar alterações?</summary>
+            <p>
+              Sim. Quantidade de revisões, prazos e atualizações devem ser
+              definidos antes do início do projeto.
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>Quanto custa criar um site?</summary>
+            <p>
+              O valor depende do número de páginas, funcionalidades e nível
+              de personalização. Fale conosco para uma avaliação.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contato">
+      <div class="container">
+        <div class="cta reveal">
+          <span class="eyebrow">Seu próximo passo</span>
+
+          <h2>
+            Vamos transformar sua ideia em uma
+            <span class="gradient">presença digital memorável.</span>
+          </h2>
+
+          <p>
+            Conte um pouco sobre sua empresa e o que você deseja criar.
+            A conversa inicial é direta e sem compromisso.
+          </p>
+
+          <div class="contact-buttons">
+            <a
+              class="button"
+              href="https://wa.me/5511947735589?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Orcaweb%20e%20quero%20criar%20um%20site."
+              target="_blank"
+              rel="noopener"
+            >
+              Falar pelo WhatsApp ↗
+            </a>
+
+            <a
+              class="button secondary"
+              href="mailto:are012020@gmail.com?subject=Quero criar um site com a Orcaweb"
+            >
+              Enviar e-mail
+            </a>
+
+            <a class="button secondary" href="tel:+5511947735589">
+              Ligar agora
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="#inicio">
+            <span class="logo-mark">&lt;/&gt;</span>
+            <span>orca<span class="gradient">web</span></span>
+          </a>
+
+          <p class="footer-description">
+            Sites premium e experiências digitais para empresas que querem
+            crescer com mais presença, clareza e tecnologia.
+          </p>
+        </div>
+
+        <div>
+          <span class="mono">Navegação</span>
+
+          <div class="footer-links">
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#processo">Processo</a>
+            <a href="#projetos">Projetos</a>
+          </div>
+        </div>
+
+        <div>
+          <span class="mono">Contato</span>
+
+          <div class="footer-links">
+            <a href="mailto:are012020@gmail.com">are012020@gmail.com</a>
+            <a href="tel:+5511947735589">(11) 94773-5589</a>
+            <a href="https://wa.me/5511947735589" target="_blank">
+              WhatsApp
+            </a>
+            <span>Itaquera · São Paulo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2026 Orcaweb · Desenvolvido por Erick Viana.
+      </div>
+    </div>
+  </footer>
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/5511947735589?text=Ol%C3%A1%2C%20quero%20falar%20sobre%20um%20site%20para%20minha%20empresa."
+    target="_blank"
+    rel="noopener"
+    aria-label="Falar com a Orcaweb pelo WhatsApp"
+  >
+    ☎
+  </a>
+
+  <script>
+    const header = document.getElementById("header");
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 20);
+    });
+
+    menuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".mobile-menu a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      observer.observe(element);
+    });
+
+    document.querySelectorAll(".faq").forEach((item) => {
+      item.addEventListener("toggle", () => {
+        if (item.open) {
+          document.querySelectorAll(".faq").forEach((other) => {
+            if (other !== item) {
+              other.removeAttribute("open");
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
