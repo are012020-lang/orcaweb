@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://orcaweb-seusite.netlify.app/sitemap.xml
